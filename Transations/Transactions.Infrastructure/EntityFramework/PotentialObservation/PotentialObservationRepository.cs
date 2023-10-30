@@ -13,8 +13,9 @@ public class PotentialObservationRepository : IPotentialObservationRepository
         _context = context;
     }
 
-    public Task Save(PotentialObservation potentialViolation)
+    public async Task Save(PotentialObservation potentialViolation)
     {
-        throw new NotImplementedException();
+        _context.PotentialObservations.Add(potentialViolation);
+        await _context.SaveChangesAsync();
     }
 }
