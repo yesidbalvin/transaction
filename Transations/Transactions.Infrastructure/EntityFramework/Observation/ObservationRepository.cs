@@ -13,8 +13,14 @@ public class ObservationRepository : IObservationRepository
         _context = context;
     }
 
-    public Task Save(Observation observation)
+    public async Task<Observation> GetAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return await _context.Observations.FindAsync(id);
+    }
+
+    public async Task Save(Observation observation)
+    {
+        _context.Observations.Add(observation);
+        await _context.SaveChangesAsync();
     }
 }
